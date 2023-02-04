@@ -1,1 +1,3 @@
-# MultiMeta Paper: Is-Multimodal-Fusion-needed-for-Meta-Learning?
+# MultiMeta Paper: Multimodal Meta-Learning for Human Behaviour Understanding
+
+thoughts: comparing language feature and object position feature
