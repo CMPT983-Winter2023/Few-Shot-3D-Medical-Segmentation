@@ -1,4 +1,4 @@
-# MultiMeta Paper: Multimodal Fusion in Meta-Learning with Contrastive Learning
+# MultiMeta Paper: Is Language supervision Better in Understanding Abstract Feature?
 
 thoughts: comparing language feature and object position feature.
 
