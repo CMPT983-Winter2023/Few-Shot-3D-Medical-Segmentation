@@ -6,3 +6,5 @@
 
 2/18 solved the env issue, just skip pg-op and setuptools, solving issue for install minkowski engine。 solved figuring out how to download scannet
 
+2/19
+
