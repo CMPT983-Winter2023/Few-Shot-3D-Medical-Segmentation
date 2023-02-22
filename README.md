@@ -8,3 +8,4 @@
 
 2/19
 
+2/21 understanding paper and code
