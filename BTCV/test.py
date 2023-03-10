@@ -106,6 +106,7 @@ def main():
             #*********************code for MSD
             #for BTCV dataset, after using transform from monai, the input will be things like torch.Size([1, 1, 220, 220, 40])
             # for MSD, after using transform from monai, the input should be torch.Size([1, 4, 160, 160, 78])
+            #Here, we need to swap the tensor dimention at posotion 0 and 1
             #check shape
      
             val_inputs=val_inputs.transpose(0,1)
