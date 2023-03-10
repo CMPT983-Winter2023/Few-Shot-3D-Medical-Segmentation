@@ -103,14 +103,15 @@ def main():
 
 
 
-            #code i wrote
+            #*********************code for MSD
+            
             #check shape
-            print(val_inputs.shape)
+     
             val_inputs=val_inputs.transpose(0,1)
-            print(val_inputs.shape)
+       
 
 
-            print(type(val_inputs))
+        
 
             val_outputs = sliding_window_inference(
                 val_inputs, (args.roi_x, args.roi_y, args.roi_z), 4, model, overlap=args.infer_overlap, mode="gaussian"
