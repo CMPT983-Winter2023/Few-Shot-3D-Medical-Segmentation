@@ -1,0 +1,3 @@
+export BUILD_MONAI_CPP=True
+export BUILD_MONAI_CUDA=True
+export TORCH_VERSION=1.9.0
