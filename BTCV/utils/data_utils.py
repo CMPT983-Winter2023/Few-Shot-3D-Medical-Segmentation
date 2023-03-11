@@ -69,54 +69,141 @@ class Sampler(torch.utils.data.Sampler):
 def get_loader(args):
     data_dir = args.data_dir
     datalist_json = os.path.join(data_dir, args.json_list)
+    # train_transform = transforms.Compose(
+    #     [
+    #         transforms.LoadImaged(keys=["image", "label"]),
+    #         transforms.AddChanneld(keys=["image", "label"]),
+    #         transforms.Orientationd(keys=["image", "label"], axcodes="RAS"),
+    #         transforms.Spacingd(
+    #             keys=["image", "label"], pixdim=(args.space_x, args.space_y, args.space_z), mode=("bilinear", "nearest")
+    #         ),
+    #         transforms.ScaleIntensityRanged(
+    #             keys=["image"], a_min=args.a_min, a_max=args.a_max, b_min=args.b_min, b_max=args.b_max, clip=True
+    #         ),
+    #         transforms.CropForegroundd(keys=["image", "label"], source_key="image"),
+    #         transforms.RandCropByPosNegLabeld(
+    #             keys=["image", "label"],
+    #             label_key="label",
+    #             spatial_size=(args.roi_x, args.roi_y, args.roi_z),
+    #             pos=1,
+    #             neg=1,
+    #             num_samples=4,
+    #             image_key="image",
+    #             image_threshold=0,
+    #         ),
+    #         transforms.RandFlipd(keys=["image", "label"], prob=args.RandFlipd_prob, spatial_axis=0),
+    #         transforms.RandFlipd(keys=["image", "label"], prob=args.RandFlipd_prob, spatial_axis=1),
+    #         transforms.RandFlipd(keys=["image", "label"], prob=args.RandFlipd_prob, spatial_axis=2),
+    #         transforms.RandRotate90d(keys=["image", "label"], prob=args.RandRotate90d_prob, max_k=3),
+    #         transforms.RandScaleIntensityd(keys="image", factors=0.1, prob=args.RandScaleIntensityd_prob),
+    #         transforms.RandShiftIntensityd(keys="image", offsets=0.1, prob=args.RandShiftIntensityd_prob),
+    #         transforms.ToTensord(keys=["image", "label"]),
+    #     ]
+    # )
+
     train_transform = transforms.Compose(
         [
-            transforms.LoadImaged(keys=["image", "label"]),
-            transforms.AddChanneld(keys=["image", "label"]),
+            # LoadImaged with image_only=True is to return the MetaTensors
+            # the additional metadata dictionary is not returned.
+            transforms.LoadImaged(keys=["image", "label"], image_only=True),
+            transforms.EnsureChannelFirstd(keys=["image", "label"]),
             transforms.Orientationd(keys=["image", "label"], axcodes="RAS"),
             transforms.Spacingd(
-                keys=["image", "label"], pixdim=(args.space_x, args.space_y, args.space_z), mode=("bilinear", "nearest")
+                keys=["image", "label"],
+                pixdim=(1.62, 1.62, 3.22),
+                mode=("bilinear", "nearest"),
             ),
             transforms.ScaleIntensityRanged(
-                keys=["image"], a_min=args.a_min, a_max=args.a_max, b_min=args.b_min, b_max=args.b_max, clip=True
+                keys=["image"],
+                a_min=-57,
+                a_max=164,
+                b_min=0.0,
+                b_max=1.0,
+                clip=True,
             ),
             transforms.CropForegroundd(keys=["image", "label"], source_key="image"),
+            # randomly crop out patch samples from big
+            # image based on pos / neg ratio
+            # the image centers of negative samples
+            # must be in valid image area
             transforms.RandCropByPosNegLabeld(
                 keys=["image", "label"],
                 label_key="label",
-                spatial_size=(args.roi_x, args.roi_y, args.roi_z),
+                spatial_size = (128,128,32),
                 pos=1,
                 neg=1,
                 num_samples=4,
                 image_key="image",
                 image_threshold=0,
             ),
-            transforms.RandFlipd(keys=["image", "label"], prob=args.RandFlipd_prob, spatial_axis=0),
-            transforms.RandFlipd(keys=["image", "label"], prob=args.RandFlipd_prob, spatial_axis=1),
-            transforms.RandFlipd(keys=["image", "label"], prob=args.RandFlipd_prob, spatial_axis=2),
-            transforms.RandRotate90d(keys=["image", "label"], prob=args.RandRotate90d_prob, max_k=3),
-            transforms.RandScaleIntensityd(keys="image", factors=0.1, prob=args.RandScaleIntensityd_prob),
-            transforms.RandShiftIntensityd(keys="image", offsets=0.1, prob=args.RandShiftIntensityd_prob),
-            transforms.ToTensord(keys=["image", "label"]),
+            transforms.CropForegroundd(keys=["image", "label"], source_key="image"),
+
+            # transforms.RandAffined(
+            #     keys=['image', 'label'],
+            #     mode=('bilinear', 'nearest'),
+            #     prob=1.0, spatial_size=(160, 160, 78),
+            #     rotate_range=(0, 0, np.pi/15),
+            #     scale_range=(0.1, 0.1, 0.1)),
         ]
     )
+    # val_transform = transforms.Compose(
+    #     [
+    #         transforms.LoadImaged(keys=["image", "label"]),
+    #         transforms.AddChanneld(keys=["image", "label"]),
+    #         # transforms.EnsureChannelFirstd(keys=["image", "label"]),
+    #         transforms.Orientationd(keys=["image", "label"], axcodes="RAS"),
+    #         transforms.Spacingd(
+    #             keys=["image", "label"], pixdim=(args.space_x, args.space_y, args.space_z), mode=("bilinear", "nearest")
+    #         ),
+    #         transforms.ScaleIntensityRanged(
+    #             keys=["image"], a_min=args.a_min, a_max=args.a_max, b_min=args.b_min, b_max=args.b_max, clip=True
+    #         ),
+    #         transforms.CropForegroundd(keys=["image", "label"], source_key="image"),
+    #         transforms.ToTensord(keys=["image", "label"]),
+    #     ]
+    # )
+
     val_transform = transforms.Compose(
         [
-            transforms.LoadImaged(keys=["image", "label"]),
-            transforms.AddChanneld(keys=["image", "label"]),
-            # transforms.EnsureChannelFirstd(keys=["image", "label"]),
+            # LoadImaged with image_only=True is to return the MetaTensors
+            # the additional metadata dictionary is not returned.
+            transforms.LoadImaged(keys=["image", "label"], image_only=True),
+            transforms.EnsureChannelFirstd(keys=["image", "label"]),
             transforms.Orientationd(keys=["image", "label"], axcodes="RAS"),
             transforms.Spacingd(
-                keys=["image", "label"], pixdim=(args.space_x, args.space_y, args.space_z), mode=("bilinear", "nearest")
+                keys=["image", "label"],
+                pixdim=(1.62, 1.62, 3.22),
+                mode=("bilinear", "nearest"),
             ),
             transforms.ScaleIntensityRanged(
-                keys=["image"], a_min=args.a_min, a_max=args.a_max, b_min=args.b_min, b_max=args.b_max, clip=True
+                keys=["image"],
+                a_min=-57,
+                a_max=164,
+                b_min=0.0,
+                b_max=1.0,
+                clip=True,
             ),
             transforms.CropForegroundd(keys=["image", "label"], source_key="image"),
-            transforms.ToTensord(keys=["image", "label"]),
+            transforms.RandCropByPosNegLabeld(
+            keys=["image", "label"],
+            label_key="label",
+            spatial_size = (128,128,32),
+            pos=1,
+            neg=1, # pos / (pos+neg) = probability to pick fg than bg
+            num_samples=4, # no. of crop regions to take in each list
+            image_key="image",
+            image_threshold=0,
+            ),
+            # transforms.RandAffined(
+            #     keys=['image', 'label'],
+            #     mode=('bilinear', 'nearest'),
+            #     prob=1.0, spatial_size=(160, 160, 78),
+            #     rotate_range=(0, 0, np.pi/15),
+            #     scale_range=(0.1, 0.1, 0.1)),
         ]
     )
 
+    #test_transform is still from non-msd dataset
     test_transform = transforms.Compose(
         [
             transforms.LoadImaged(keys=["image", "label"]),
@@ -128,6 +215,16 @@ def get_loader(args):
             transforms.ScaleIntensityRanged(
                 keys=["image"], a_min=args.a_min, a_max=args.a_max, b_min=args.b_min, b_max=args.b_max, clip=True
             ),
+            # transforms.RandCropByPosNegLabeld(
+            # keys=["image", "label"],
+            # label_key="label",
+            # spatial_size = (128,128,32),
+            # pos=1,
+            # neg=1, # pos / (pos+neg) = probability to pick fg than bg
+            # num_samples=4, # no. of crop regions to take in each list
+            # image_key="image",
+            # image_threshold=0,
+            # ),
             transforms.ToTensord(keys=["image", "label"]),
             
         ]
