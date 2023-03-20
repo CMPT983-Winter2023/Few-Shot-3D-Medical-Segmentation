@@ -1,3 +1,17 @@
+#download 
+--Abdomen:
+    --RawData
+    --RegData
+    --text
+--pretrained:
+    --medclip-vit
+--pretrained_models:
+    --swin_unetr_tiny.pt
+    --swin_unetr_small.pt
+    --swin_unetr_base.pt
+    --model_swinvit.pt
+
+
 # Model Overview
 ![image](./assets/swin_unetr.png)
 This repository contains the code for Swin UNETR [1,2]. Swin UNETR is the state-of-the-art on Medical Segmentation
