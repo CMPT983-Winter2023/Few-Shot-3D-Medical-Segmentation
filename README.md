@@ -1,6 +1,10 @@
 # Environment installing:
 git clone https://github.com/Project-MONAI/MONAI.git
 
+cd MONAI/
+
+
+
 
 # Dataset Preprocess
 --Abdomen:
