@@ -1,10 +1,12 @@
-#download 
+# Dataset Preprocess
 --Abdomen:
     --RawData
     --RegData
     --text
+
 --pretrained:
     --medclip-vit
+
 --pretrained_models:
     --swin_unetr_tiny.pt
     --swin_unetr_small.pt
