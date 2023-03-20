@@ -1,10 +1,7 @@
 # Environment installing:
 git clone https://github.com/Project-MONAI/MONAI.git
-
 cd MONAI/
-
 BUILD_MONAI=1 python setup.py develop
-
 
 # Dataset Preprocess
 --Abdomen:
