@@ -1,3 +1,7 @@
+# Environment installing:
+git clone https://github.com/Project-MONAI/MONAI.git
+
+
 # Dataset Preprocess
 --Abdomen:
     --RawData
