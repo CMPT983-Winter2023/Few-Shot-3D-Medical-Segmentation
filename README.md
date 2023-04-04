@@ -29,6 +29,7 @@ It should contains text, RegData, RawData. The text folder contains text embeddi
 # Data distribution
 Because we are exploring zero shot/few shot, we only msd for experiments. The similarity of msd organs and data distribution are following:
 ![image](./assets/similarity.png)
+![image](./assets/distribution.png)
 
 
 # Citation
