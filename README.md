@@ -46,6 +46,12 @@ Weight decay: 1e-5
 The loss graphs:
 ![image](./assets/loss.png)
 
+#Results:
+The results examples: (spleen is trained and tested on few-shot)
+![image](./assets/0.png)
+![image](./assets/1.png)
+![image](./assets/2.png)
+
 # Citation
 Thanks great related work.
 If you find this repository useful, please consider citing the following papers:
