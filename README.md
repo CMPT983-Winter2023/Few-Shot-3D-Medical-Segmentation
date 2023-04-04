@@ -8,7 +8,7 @@ Mohammadreza Dorkhah, Yide Ma
 # Citation
 If you find this repository useful, please consider citing the following papers:
 
-
+'''
 @inproceedings{tang2022self,
   title={Self-supervised pre-training of swin transformers for 3d medical image analysis},
   author={Tang, Yucheng and Yang, Dong and Li, Wenqi and Roth, Holger R and Landman, Bennett and Xu, Daguang and Nath, Vishwesh and Hatamizadeh, Ali},
@@ -23,6 +23,6 @@ If you find this repository useful, please consider citing the following papers:
   journal={arXiv preprint arXiv:2201.01266},
   year={2022}
 }
-
+'''
 
 
