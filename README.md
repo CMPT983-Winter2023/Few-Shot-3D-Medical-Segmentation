@@ -57,6 +57,7 @@ The results examples: (spleen is trained and tested on few-shot)
 
 The numerical results:
 ![image](./assets/result.png)
+![image](./assets/chart.png)
 
 # Citation
 Thanks great related work.
