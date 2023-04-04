@@ -3,6 +3,7 @@
 Mohammadreza Dorkhah, Yide Ma
 
 # Model
+The architecture of our model is demonstrated as below:
 ![image](./assets/model.png)
 
 # Repo preparation
