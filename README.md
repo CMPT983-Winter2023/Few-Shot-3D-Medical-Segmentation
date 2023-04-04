@@ -5,7 +5,9 @@ Mohammadreza Dorkhah, Yide Ma
 # Model
 ![image](./assets/model.png)
 
+
 # Citation
+Thanks great related work.
 If you find this repository useful, please consider citing the following papers:
 
 ```
@@ -22,6 +24,13 @@ If you find this repository useful, please consider citing the following papers:
   author={Hatamizadeh, Ali and Nath, Vishwesh and Tang, Yucheng and Yang, Dong and Roth, Holger and Xu, Daguang},
   journal={arXiv preprint arXiv:2201.01266},
   year={2022}
+}
+
+@article{liu2023clip,
+  title={CLIP-Driven Universal Model for Organ Segmentation and Tumor Detection},
+  author={Liu, Jie and Zhang, Yixiao and Chen, Jie-Neng and Xiao, Junfei and Lu, Yongyi and Landman, Bennett A and Yuan, Yixuan and Yuille, Alan and Tang, Yucheng and Zhou, Zongwei},
+  journal={arXiv preprint arXiv:2301.00785},
+  year={2023}
 }
 ```
 
