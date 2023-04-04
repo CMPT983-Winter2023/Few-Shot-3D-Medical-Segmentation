@@ -31,6 +31,18 @@ Because we are exploring zero shot/few shot, we only msd for experiments. The si
 ![image](./assets/similarity.png)
 ![image](./assets/image.png)
 
+# Training
+Because we are doing experiment on few-shot, we trained few epochs for fine-tuning purposes.
+
+Environment: Google Colab Pro+
+GPU: NVIDIA A100 with 40 GB of memory
+Batch size: 1
+Number of epochs: 11
+Optimizer: AdamW
+Loss: Cross Entropy
+Learning rate: 1e-4
+Weight decay: 1e-5
+
 
 # Citation
 Thanks great related work.
