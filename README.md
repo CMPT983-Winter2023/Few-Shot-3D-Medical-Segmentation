@@ -5,6 +5,31 @@ Mohammadreza Dorkhah, Yide Ma
 # Model
 ![image](./assets/model.png)
 
+# Repo preparation
+If you want to run or develop based on our model, please do this preparation:
+First of all download monai medical image preprocess library:
+!git clone https://github.com/Project-MONAI/MONAI.git
+!cd MONAI/
+!BUILD_MONAI=1 python setup.py develop
+
+Then download msd dataset for the universal folder:
+Download [msd chanllenge datatset](http://medicaldecathlon.com/). to CLIP-Driven-Universal-Model/dataset/10_Decathlon.
+You can also using other datasets and change the dataset_list folder.
+The CLIP-Driven-Universal-Model/out folder also contains: rand, one_hot, medclip, clip_prompt, clip_attention, clip.
+
+For the BTCV folder:
+download medclip pretrained model:
+BTCV/pretrained/medclip-vit/pytorch_model.bin, BTCV/pretrained/medclip-vit/medclip-vit-pretrained
+
+Also download [Swin-UNETR pretrained model](https://github.com/Project-MONAI/research-contributions/tree/main/SwinUNETR/BTCV).
+
+We are also doing some experiments first, download [BTCV challenge dataset](https://www.synapse.org/#!Synapse:syn3193805/wiki/217752).
+It should contains text, RegData, RawData. The text folder contains text embedding. The code have contains script to generate.
+
+# Data distribution
+Because we are exploring zero shot/few shot, we only msd for experiments. The similarity of msd organs and data distribution are following:
+![image](./assets/similarity.png)
+
 
 # Citation
 Thanks great related work.
