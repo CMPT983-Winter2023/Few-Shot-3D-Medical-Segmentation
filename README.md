@@ -43,6 +43,8 @@ Loss: Cross Entropy
 Learning rate: 1e-4
 Weight decay: 1e-5
 
+The loss graphs:
+![image](./assets/loss.png)
 
 # Citation
 Thanks great related work.
